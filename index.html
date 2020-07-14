@@ -1,34 +1,27 @@
-<HTML>
-<HEAD>
-<TITLE>默林</TITLE>
-<META. http-equiv=Content-Type c>
-</HEAD>
-<BODY>
-<p><OBJECT id=sims classid=CLSID45FD31B-5C6E-11D1-9EC1-00C04FD7081F>
-　</OBJECT>
-　<SCRIPT>
-var MerlinID;
-var MerlinACS;
-sims.Connected = true;
-MerlinLoaded = LoadLocalAgent(MerlinID, MerlinACS);
-Merlin = sims.Characters.Character(MerlinID);
-Merlin.Show();
-Merlin.Play("Surprised");
-Merlin.Speak("大家好");
-Merlin.Play("GestureLeft");
-Merlin.Think("我是默林！");
-Merlin.Play("leased");
-Merlin.Think("可爱吗？");
-Merlin.Play("GestureDown");
-Merlin.Speak("哈哈！");
-Merlin.Hide();
-function LoadLocalAgent(CharID, CharACS){
-LoadReq = sims.Characters.Load(CharID, CharACS);
-return(true);
-}
-</SCRIPT>
-</p >
-<p> </p >
-<p>看此效果必须装有office2000！！！</p >
-</BODY>
-</HTML>
+ static Dictionary<string, string[]> dic = new Dictionary<string, string[]>();
+        static string[] teams = { "AB", "BC", "CD", "DE", "EF", "FG" };
+        static void xxxDemo()
+        {
+            foreach (var team in teams)
+            {
+                if (dic.ContainsKey(team)) continue;
+                List<string> tmp = new List<string>(teams);
+                tmp.Remove(team);//移除自身
+                foreach (var kv in dic)
+                {
+                    if (kv.Value.Contains(team))
+                    {
+                        //不能同时即为抽签又为被抽签队伍
+                        tmp.Remove(kv.Key);
+                    }
+                }
+                //移除已经选中2次的队伍
+                var groups = dic.Values.SelectMany(c => c.Select(x => x)).GroupBy(x => x).Where(g => g.Count() >= 2);
+                foreach (var g in groups)
+                {
+                    tmp.Remove(g.Key);
+                }
+                dic.Add(team, tmp.OrderBy(g => Guid.NewGuid()).Take(2).ToArray());
+            }
+            Console.WriteLine(dic.Count);
+        }
