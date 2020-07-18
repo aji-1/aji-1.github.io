@@ -1,0 +1,189 @@
+<!DOCTYPE:html>
+<html>
+<head>
+<title>我们与世界相遇</title>
+<meta charset="utf-8"><!-- 指定 HTML 文档的编码。-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--网页尺寸自适应,指定与 http-equiv 或 name 属性相关的值。-->
+<style type="text/css">
+*{
+            margin:0;
+            padding:0;}
+        body{
+            background-image: url(mp3/cppj.png);
+            background-position: 100% 100%;
+            background-origin: border-box;
+            background-clip: border-box;
+            background-attachment: fixed;
+        }
+<!--调整图片文件的样式-->
+:enabled{
+outline: 1px solid rgb(0, 26, 255);}
+</style>
+<link rel="icon" type="image/x-icon" href="mp3/favicon.ico">
+<!--日期显示-->
+<style type="text/css">
+    div#date1{
+        position: fixed;
+        line-height:90px;
+        font-size:24px;
+        z-index:999;
+    top:500px;
+    left:850px;
+    }
+.btn{
+color: #0399d3;
+font-size: 40px;
+font-family: Arial, "微软雅黑", "黑体";
+font-weight: bold;
+}
+.place
+{
+position:fixed;
+left:500px;
+top:300px;
+}  /*上面的btn和place是改变按钮位置和大小颜色*/
+    </style>
+    <script type="text/javascript">
+    function getTime() {
+    
+        var dateObj = new Date();
+    
+        var year = dateObj.getFullYear();//年
+        var month = dateObj.getMonth()+1;//月  (注意：月份+1)
+        var date = dateObj.getDate();//日
+        var day = dateObj.getDay();
+        var weeks = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+        var week = weeks[day];//根据day值，获取星期数组中的星期数。
+        var hours = dateObj.getHours();//小时
+        var minutes = dateObj.getMinutes();//分钟
+        var seconds = dateObj.getSeconds();//秒
+    
+        if(month<10){
+            month = "0"+month;
+        }
+        if(date<10){
+            date = "0"+date;
+        }
+        if(hours<10){
+            hours = "0"+hours;
+        }
+        if(minutes<10){
+            minutes = "0"+minutes;
+        }
+        if(seconds<10){
+            seconds = "0"+seconds;
+        }
+        var newDate ="<font color=yellow>"+year+"年"+month+"月"+date+"日"+hours+":"+minutes+":"+seconds+"&nbsp &nbsp"+week+"</font>";
+        document.getElementById("date1").innerHTML = newDate;//在div中写入时间
+        setTimeout('getTime()', 1000);//每隔1000ms执行一次getTime()
+    }
+    </script>
+</head>
+<body >
+<body onload="getTime()" onload="myaudio">
+<div id="date1"></div>
+<div id="play1" class="white_content"></div>
+<div id="result"></div>
+<div style="clear:both; float:none"></div>  
+<div id="control">  
+    <div id="num">0</div>  
+    <input type="button" id="btnStart" value="开始抽取"  class="btn place"; onclick="Start(this),playa()">  
+</div>
+<div id="display" style="width: 50; height: 50;"></div>
+<audio id="myaudio" src="mp3/01.mp3" controls="controls" autoplay loop="true" hidden="true">
+</audio>
+<style>html, body{  
+    padding:0px; margin:0px; font-size:20px;  
+}  /*规定各个div的样式属性*/
+#play1{
+    background-color: floralwhite; 
+}
+#result{    
+    height:20px; margin-bottom:10px;
+} 
+#result div{  
+    float:left; border:1px solid #006699; color:#c00; width:24px; height:20px; line-height:20px;  
+    margin-right:15px; text-align:center;  
+}  
+#control div{  
+    float:left; width:24px; height:20px; line-height:20px; border:1px solid #008800; color:#c00;  
+    margin-right:20px; text-align:center;  
+}
+#play1{
+color: #ed2c6a;
+font-size: 40px;
+font-family: Arial, "微软雅黑", "黑体";
+position:fixed;
+left:100px;
+top:150px;
+}/*改变句子外观位置*/
+</style>
+<script>var arrData = [], timerID = 0;  
+//palya控制背景音乐的播放
+function playa() {
+    var myAuto = document.getElementById('myaudio');
+    myAuto.play();
+}
+/*随机数数组的元素全部赋予相应的值*/
+for(var i = 1; i <=30; i++){  
+    arrData[i - 1] = i;  
+}  
+function $(id){  
+    return document.getElementById(id);  
+}  
+
+//button的应答行为实现
+var a=new Array();
+//数组的内容赋值
+a[0]="人类的期望像是一颗永恒的星，乌云掩不住它的光芒。个性是在这天，和平不是一个理想，一个梦，它是万人的愿望。"
+a[1]=" 该说的话要说，不该说的最好不说，不管说不说，都尽量按照正确的尺度去做。"
+a[2]=" 脚踏实地实事求是勇于拼搏努力学习有自己的手圆上高中的句号，实现自己的梦想。"
+a[3]="雨后的我不在需要倾诉，风雨阻止不了我成功的脚步，经过挫折洗礼才懂得你该往哪里走。"
+a[4]=" 对自己狠一点，逼自己努力，再过五年你将会感谢今天发狠的自己、恨透今天懒惰自卑的自己"
+a[5]="每个人的生命里都有一个哆啦A梦，只是你浑然不知。生活中没有谎言机让我们失而复得，失去便是永远。"
+a[6]="没有风浪，便没有勇敢的弄潮儿;没有荆棘，也没有不屈的开拓者。"
+a[7]="时光匆匆流逝过，平平淡淡才是真。忍耐任由风雨过，守得云开见月明。"
+a[8]=" 世界上没有任何一种具有真正价值的东西可以不经过辛勤劳动而能够得的。"
+a[9]=" 用财富装扮身躯，不如用道德美化心灵。" 
+for(i=10;i<30;i++){
+    a[i]=a[i-10]
+}
+//随机数产生
+function Start(btn){  
+if(timerID>0){
+            if($("num").index < 15){
+                for(var j=0; j<15; j++){
+                 if($("num").index==j){
+                 play1.innerHTML=a[j];
+                 document.getElementById('play1').getBoundingClientRect().center
+}
+    }
+        }else{
+    for(var j=15;j<30;j++){
+    if($("num").index==j){
+        play1.innerHTML=a[j];
+        document.getElementById('play1').getBoundingClientRect().center
+    }
+    }
+} 
+        clearInterval(timerID);  
+        timerID = 0;  
+    }  
+    if(btn.value == "开始"){  
+       timerID = setInterval(function(){  
+            $("num").index = parseInt(Math.random() * (arrData.length));  
+            $("num").innerHTML = arrData[$("num").index];  
+        }, 30);  
+        btn.value = "暂停";  
+    }else{  
+        var div = document.createElement("div");  
+        div.innerHTML = $("num").innerHTML;  
+        $("result").appendChild(div);  
+        btn.value = "开始";  
+    } 
+} 
+
+</script>
+</body>
+</html>
