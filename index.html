@@ -9,14 +9,16 @@
 *{
             margin:0;
             padding:0;}
-        body{
-            background-image: url(cppj.png);
-            background-position: 100% 100%;
-            background-origin: border-box;
-            background-clip: border-box;
-            background-attachment: fixed;
-        }
-<!--调整图片文件的样式-->
+video#invideo{
+position:fixed;
+min-width:75%;
+min-height:75%;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-1000;
+}
+<!--调整视频文件的样式-->
 :enabled{
 outline: 1px solid rgb(0, 26, 255);}
 </style>
@@ -68,8 +70,10 @@ outline: 1px solid rgb(0, 26, 255);}
     }
     </script>
 </head>
-<body >
 <body onload="getTime()" onload="myaudio">
+<video id="invideo"  loop autoplay>
+<source src="cdd.mp4" type="video/mp4">
+</video>
 <div id="date1"></div>
 <div id="play1" class="white_content"></div>
 <div id="result"></div>
